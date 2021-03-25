@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="Web\App\Anbennar\anbennarNations.vue">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\app-router.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\appData.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\Components\ideaGroup.vue">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\IdeaVariation\ideaVariationIdeaGroups.vue">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\IdeaVariation\ideaVariationPlanner.vue">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\IdeaVariation\ideaVariationPolicies.vue">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\pngshim.d.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\vue-shims.d.ts">
+      <SubType>Code</SubType>
+    </None>
+  </ItemGroup>
+</Project>
