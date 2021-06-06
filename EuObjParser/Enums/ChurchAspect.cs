@@ -32,5 +32,20 @@ namespace EuObjParser.Enums
 		[EuKeyAttribute("global_colonial_growth_dwarf")]
 		[Display(Name = "Global colonial growth")]
 		global_colonial_growth_dwarf,
+		[EuKeyAttribute("legitimize_government")]
+		[Display(Name = "Legitimize government")]
+		legitimize_government,
+		[EuKeyAttribute("encourage_warriors_of_the_faith")]
+		[Display(Name = "Encourage warriors of the faith")]
+		encourage_warriors_of_the_faith,
+		[EuKeyAttribute("send_monks_to_establish_monasteries")]
+		[Display(Name = "Send monks to establish monasteries")]
+		send_monks_to_establish_monasteries,
+		[EuKeyAttribute("promote_territorial_rights")]
+		[Display(Name = "Promote territorial rights")]
+		promote_territorial_rights,
+		[EuKeyAttribute("will_of_the_martyrs")]
+		[Display(Name = "Will of the martyrs")]
+		will_of_the_martyrs,
 	}
 }

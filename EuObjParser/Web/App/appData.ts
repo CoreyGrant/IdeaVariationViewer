@@ -1,12 +1,10 @@
-﻿async function getIdeaVariation() {
-    return await fetch("Data/IdeaVariation.json").then(x => x.json());
-}
-
-async function getAnbennar() {
-    return await fetch("Data/Anbennar.json").then(x => x.json());
+﻿async function getFile(filename, folder = null) {
+    if (folder) {
+        filename = folder + "/" + filename;
+    }
+    return await fetch("Data/" + filename).then(x => x.json());
 }
 
 export {
-    getIdeaVariation,
-    getAnbennar
-}
+    getFile
+};

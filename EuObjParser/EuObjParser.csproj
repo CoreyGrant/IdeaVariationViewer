@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,21 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp3.1\output.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Pfim" Version="0.10.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="YamlDotNet" Version="11.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Web\App\Components\policy.vue">
-      <SubType>Code</SubType>
-    </None>
-    <None Update="Web\App\IdeaVariation\ideaVariationPolicy.vue">
-      <SubType>Code</SubType>
-    </None>
+    <Folder Include="Temp\Bonuses\" />
+    <Folder Include="Web\Data\" />
+    <Folder Include="Web\Icons\Bonuses\" />
   </ItemGroup>
 
 </Project>

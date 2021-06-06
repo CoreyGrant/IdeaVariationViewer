@@ -32,10 +32,18 @@ namespace EuObjParser.Enums
         Exploration,
         [EuKeyAttribute("maritime_ideas")]
         Maritime,
+        [EuKeyAttribute("naval_ideas")]
+        Naval,
         [EuKeyAttribute("quality_ideas")]
         Quality,
         [EuKeyAttribute("quantity_ideas")]
         Quantity,
+        [EuKeyAttribute("aristocracy_ideas")]
+        Aristocracy,
+        [EuKeyAttribute("plutocracy_ideas")]
+        Plutocracy,
+        [EuKeyAttribute("diplomatic_ideas")]
+        Diplomatic,
         [EuKeyAttribute("expansion_ideas")]
         Expansion,
         [EuKeyAttribute("humanist_ideas")]
@@ -189,7 +197,6 @@ namespace EuObjParser.Enums
         Centralisation = 5,
         Imperial = 6,
         Ship = 7,
-
         Muslim,
         [Display(Name = "Non republic")]
         NonRepublic,
@@ -199,8 +206,11 @@ namespace EuObjParser.Enums
         NonHeavyShip,
         [Display(Name = "Non mercenary")]
         NonMerc,
+        [Display(Name = "Any but shia/ibadi/hussite")]
+        NotShiaIbadiHussite,
         [Display(Name = "Some religion")]
-        SomeReligion
+        SomeReligion,
+        Any
     }
 
     enum EuIdeaGroupExtraCategory

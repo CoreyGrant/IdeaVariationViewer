@@ -6,19 +6,39 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace EuObjParser
 {
 	static class Helpers
 	{
+		public static BonusDisplayType GetDisplayType(Bonus bonus)
+		{
+			var enumValueName = Enum.GetName(typeof(Bonus), bonus);
+
+			var valueType = typeof(Bonus).GetMember(enumValueName)
+				.Single()
+				.GetCustomAttributes(typeof(EuValueTypeAttribute), false)
+				.Select(x => (EuValueTypeAttribute)x)
+				.SingleOrDefault();
+			return valueType.Type;
+		}
+
+		public static string FormatCountryIdeaName(string countryIdeaName)
+		{
+			countryIdeaName = Regex.Replace(countryIdeaName, "^[A-Z][0-9]{2}_", "");
+			countryIdeaName = string.Join(" ", countryIdeaName.Split("_"));
+			return countryIdeaName.Substring(0, 1).ToUpper() + countryIdeaName.Substring(1).ToLower();
+		}
+
 		public static string DisplayValue(Enums.Bonus type, string value)
 		{
-			if(value == null)
+			if (value == null)
 			{
 				return null;
 			}
 			var enumValueName = Enum.GetName(typeof(Bonus), type);
-			
+
 			var valueType = typeof(Bonus).GetMember(enumValueName)
 				.Single()
 				.GetCustomAttributes(typeof(EuValueTypeAttribute), false)
@@ -34,15 +54,35 @@ namespace EuObjParser
 					{
 						var splitValue1 = value.Split('/');
 						return (decimal.Parse(splitValue1[0]) * 100).ToString("0.00") + "%" + " / Colonial nation";
-					} 
+					}
+					if (value.Contains("/"))
+					{
+						return string.Join("/", value.Split("/").Select(x => (decimal.Parse(x) * 100).ToString("0.00") + "%"));
+					}
 					return (decimal.Parse(value) * 100).ToString("0.00") + "%";
 				case BonusDisplayType.TwoDp:
+					if (value.Contains("/"))
+					{
+						return string.Join("/", value.Split("/").Select(x => (decimal.Parse(x)).ToString("0.00")));
+					}
 					return (decimal.Parse(value)).ToString("0.00");
 				case BonusDisplayType.OneDp:
+					if (value.Contains("/"))
+					{
+						return string.Join("/", value.Split("/").Select(x => (decimal.Parse(x)).ToString("0.0")));
+					}
 					return (decimal.Parse(value)).ToString("0.0");
 				case BonusDisplayType.ZeroDp:
+					if (value.Contains("/"))
+					{
+						return string.Join("/", value.Split("/").Select(x => (decimal.Parse(x)).ToString("0")));
+					}
 					return (decimal.Parse(value)).ToString("0");
 				case BonusDisplayType.Thousand:
+					if (value.Contains("/"))
+					{
+						return string.Join("/", value.Split("/").Select(x => (decimal.Parse(x) * 1000).ToString("N")));
+					}
 					return (decimal.Parse(value) * 1000).ToString("N");
 				case BonusDisplayType.YesNo:
 					return value == "yes" ? "Yes" : "No";
@@ -54,7 +94,7 @@ namespace EuObjParser
 					return value;
 				case BonusDisplayType.ValuePerColonialNation:
 					var splitValue2 = value.Split('/');
-					return (decimal.Parse(splitValue2[0]) * 100).ToString("0.00") + "%" + " / Colonial nation";
+					return (decimal.Parse(splitValue2[0]) * 100).ToString("0.00") + "% / Colonial nation";
 			}
 			return null;
 		}
@@ -87,12 +127,17 @@ namespace EuObjParser
 				.SingleOrDefault()?.GetName() ?? enumValueName;
 		}
 
+		private static Dictionary<EuIdeaGroupCategory, List<IdeaGroup>> _allButMap = new Dictionary<EuIdeaGroupCategory, List<IdeaGroup>>
+		{
+			[EuIdeaGroupCategory.NotShiaIbadiHussite] = new List<IdeaGroup> { IdeaGroup.Shia, IdeaGroup.Ibadi, IdeaGroup.Hussite }
+		};
+
 		private static Dictionary<EuIdeaGroupCategory, List<IdeaGroup>> _map = new Dictionary<EuIdeaGroupCategory, List<IdeaGroup>>
 		{
 			[EuIdeaGroupCategory.Army] = new List<IdeaGroup> { IdeaGroup.StandingArmy, IdeaGroup.Conscription, IdeaGroup.MercenaryArmy },
 			[EuIdeaGroupCategory.Centralisation] = new List<IdeaGroup> { IdeaGroup.Centralism, IdeaGroup.Decentralism},
 			[EuIdeaGroupCategory.Damage] = new List<IdeaGroup> { IdeaGroup.Fire, IdeaGroup.Shock},
-			[EuIdeaGroupCategory.General] = new List<IdeaGroup> {IdeaGroup.Administrative, IdeaGroup.Assimilation, IdeaGroup.ColonialEmpire, IdeaGroup.Defensive, IdeaGroup.Development, IdeaGroup.Dictatorship, IdeaGroup.Dynastic, IdeaGroup.Economic, IdeaGroup.Espionage, IdeaGroup.Expansion, IdeaGroup.Exploration, IdeaGroup.FleetBase, IdeaGroup.Fortress, IdeaGroup.GeneralStaff, IdeaGroup.Health, IdeaGroup.Humanist, IdeaGroup.Influence, IdeaGroup.Innovativeness, IdeaGroup.Judicial, IdeaGroup.Maritime, IdeaGroup.Militarism, IdeaGroup.Nationalism, IdeaGroup.Offensive, IdeaGroup.Propaganda, IdeaGroup.Quality, IdeaGroup.Quantity, IdeaGroup.Society, IdeaGroup.StateAdministration, IdeaGroup.Tactics, IdeaGroup.Trade, IdeaGroup.WarProduction, IdeaGroup.WeaponQuality},
+			[EuIdeaGroupCategory.General] = new List<IdeaGroup> {IdeaGroup.Naval, IdeaGroup.Diplomatic, IdeaGroup.Aristocracy, IdeaGroup.Plutocracy, IdeaGroup.Administrative, IdeaGroup.Assimilation, IdeaGroup.ColonialEmpire, IdeaGroup.Defensive, IdeaGroup.Development, IdeaGroup.Dictatorship, IdeaGroup.Dynastic, IdeaGroup.Economic, IdeaGroup.Espionage, IdeaGroup.Expansion, IdeaGroup.Exploration, IdeaGroup.FleetBase, IdeaGroup.Fortress, IdeaGroup.GeneralStaff, IdeaGroup.Health, IdeaGroup.Humanist, IdeaGroup.Influence, IdeaGroup.Innovativeness, IdeaGroup.Judicial, IdeaGroup.Maritime, IdeaGroup.Militarism, IdeaGroup.Nationalism, IdeaGroup.Offensive, IdeaGroup.Propaganda, IdeaGroup.Quality, IdeaGroup.Quantity, IdeaGroup.Society, IdeaGroup.StateAdministration, IdeaGroup.Tactics, IdeaGroup.Trade, IdeaGroup.WarProduction, IdeaGroup.WeaponQuality},
 			[EuIdeaGroupCategory.Government] = new List<IdeaGroup> { IdeaGroup.Theocracy, IdeaGroup.Horde, IdeaGroup.Monarchy, IdeaGroup.Republic},
 			[EuIdeaGroupCategory.Imperial] = new List<IdeaGroup> { IdeaGroup.Imperial, IdeaGroup.ImperialAmbition },
 			[EuIdeaGroupCategory.Muslim] = new List<IdeaGroup> { IdeaGroup.Shia, IdeaGroup.Sunni, IdeaGroup.Ibadi},
@@ -149,21 +194,56 @@ namespace EuObjParser
 			throw new Exception(group + " was not found");
 		}
 
-		public static EuIdeaGroupCategory GetCompleteCategory(List<IdeaGroup> groups)
-		{
-			var kvs = _map.Select(x => new { x.Value, x.Key });
-			groups.Sort();
-			foreach(var kv in kvs)
-			{
-				kv.Value.Sort();
-			}
-			var matching = kvs.Where(x => Enumerable.SequenceEqual(x.Value, groups));
+		//public static EuIdeaGroupCategory GetCompleteCategory(List<string> groups)
+		//{
+		//	var kvs = _map.Select(x => new { x.Value, x.Key });
+			
+		//	groups.Sort();
+		//	foreach(var kv in kvs)
+		//	{
+		//		kv.Value.Sort();
+		//	}
+			
+		//	var matching = kvs.Where(x => Enumerable.SequenceEqual(x.Value, groups)).ToList();
+			
+			
 
-			return matching.SingleOrDefault()?.Key ??
-				(groups.Any(x => _map[EuIdeaGroupCategory.Religion].Contains(x))
-					? EuIdeaGroupCategory.SomeReligion
-					: (EuIdeaGroupCategory?)null) ?? (EuIdeaGroupCategory)1000;
-		}
+		//	if(matching.Count != 1)
+		//	{
+		//		var allButKvs = _allButMap.Select(x => new { x.Value, x.Key });
+		//		foreach (var kv in allButKvs)
+		//		{
+		//			kv.Value.Sort();
+		//		}
+				
+		//		var ideaGroups = Enum.GetValues(typeof(IdeaGroup));
+		//		var diff = new List<IdeaGroup>();
+		//		foreach(IdeaGroup group in ideaGroups)
+		//		{
+		//			if (!groups.Contains(group))
+		//			{
+		//				diff.Add(group);
+		//			}
+		//		}
+		//		diff.Sort();
+		//		var allButMatching = allButKvs.Where(x => Enumerable.SequenceEqual(x.Value, diff)).ToList();
+		//		if(allButMatching.Count == 1)
+		//		{
+		//			return allButMatching.Single().Key;
+		//		} else
+		//		{
+		//			if(diff.Count == 0)
+		//			{
+		//				return EuIdeaGroupCategory.Any;
+		//			}
+		//		}
+		//	}
+
+		//	return matching.SingleOrDefault()?.Key ??
+		//		(groups.Any(x => _map[EuIdeaGroupCategory.Religion].Contains(x))
+		//			? EuIdeaGroupCategory.SomeReligion
+		//			: (EuIdeaGroupCategory?)null) ?? (EuIdeaGroupCategory)1000;
+		//}
 
 		public static string GetImageUrl<T>(T thing)
 		{
@@ -216,7 +296,7 @@ namespace EuObjParser
 	""Yearly papal influence"": ""Papal_influence.png"",
 	""Church power modifier"": ""Church_power.png"",
 	""Monthly fervor increase"": ""Monthly_fervor.png"",
-	""Tolerance of true faith"": ""tolerance_of_the_true_faith.png"",
+	""Tolerance of true faith"": ""Tolerance_of_the_true_faith.png"",
 	""Defensiveness"": ""Fort_defense.png"",
 	""Fire damage"": ""Land_fire_damage.png"",
 	""National manpower"": ""Manpower.png"",
@@ -233,30 +313,30 @@ namespace EuObjParser
 	""Add CB"": ""Casus_belli.png"",
 	""Relation with heretics"": ""Opinion_of_heretics.png"",
 	""Land attrition"": ""Attrition.png"",
-	""Number of accepted cultures"": ""max_promoted_cultures.png"",
-	""Tolerance of heathens"": ""tolerance_heathen.png"",
+	""Number of accepted cultures"": ""Max_promoted_cultures.png"",
+	""Tolerance of heathens"": ""Tolerance_heathen.png"",
 	""Tolerance of heretics"": ""Tolerance_heretic.png"",
 	""Autonomy modifier"": ""Autonomy.png"",
 	""Global supply limit modifier"": ""Supply_limit.png"",
-	""Trade range modifier"": ""trade_range.png"",
+	""Trade range modifier"": ""Trade_range.png"",
 	""Global trade power"": ""Trade_power.png"",
 	""State maintenance modifier"": ""State_maintenance.png"",
-	""Tariffs"": ""local_tariffs.png"",
-	""Reinforce cost modifier"": ""reinforce_cost.png"",
-	""Marine fraction"": ""marines_force_limit.png"",
-	""Siege blockade progress"": ""ab_siege_blockades.png"",
-	""Morale bonus from 5 cultures"": ""morale_of_armies.png"",
+	""Tariffs"": ""Local_tariffs.png"",
+	""Reinforce cost modifier"": ""Reinforce_cost.png"",
+	""Marine fraction"": ""Marines_force_limit.png"",
+	""Siege blockade progress"": ""Ab_siege_blockades.png"",
+	""Morale bonus from 5 cultures"": ""Morale_of_armies.png"",
 	""Enforce religion cost"": ""Cost_of_enforcing_religion_through_war.png"",
-	""Build cost in subject nation"": ""construction_cost.png"",
-	""Build cost in colonial nation"": ""construction_cost.png"",
-	""Sailor maintenance modifier"": ""sailor_maintenance.png"",
-	""Add naval force limit per age"": ""naval_force_limit.png"",
-	""Extra navy tradition from galleys"": ""yearly_navy_tradition.png"",
-	""Extra navy tradition from light ships"": ""yearly_navy_tradition.png"",
-	""Extra navy tradition from heavy ships"": ""yearly_navy_tradition.png"",
+	""Build cost in subject nation"": ""Construction_cost.png"",
+	""Build cost in colonial nation"": ""Construction_cost.png"",
+	""Sailor maintenance modifier"": ""Sailor_maintenance.png"",
+	""Add naval force limit per age"": ""Naval_force_limit.png"",
+	""Extra navy tradition from galleys"": ""Yearly_navy_tradition.png"",
+	""Extra navy tradition from light ships"": ""Yearly_navy_tradition.png"",
+	""Extra navy tradition from heavy ships"": ""Yearly_navy_tradition.png"",
 	""Devepment cost for provinces over 25 dev"": ""Development_cost.png"",
 	""Reduced dev cost malus from nation size"": ""Development_cost.png"",
-	""Inflationreduction"": ""yearly_inflation_reduction.png"",
+	""Inflationreduction"": ""Yearly_inflation_reduction.png"",
 	""Extra manpower at religious war"": ""Triple_manpower_increase_in_religious_wars.png"",
 	""Yearly army professionalism"": ""Army_professionalism.png"",
 	""Estate interaction"": ""Estates.png"",
@@ -264,8 +344,16 @@ namespace EuObjParser
 	""Prestige per development from conversion"": ""Prestige_per_development_from_missionary.png"",
 	""Monthly militarized state"": ""Militarization_of_state.png"",
 	""Claim duration"": ""Claim.png"",
+	""Claim colonies"": ""Claim.png"",
 	""Core decay on your own"": ""Claim.png"",
-	""Add manadate/IA per age"": ""Imperial_authority.png""
+	""Add manadate/IA per age"": ""Imperial_authority.png"",
+	""Local development cost"": ""Development_cost.png"",
+	""Army tradition from battle"": ""Army_tradition.png"",
+	""Merchant trade power"": ""Merchants.png"",
+	""Brahmins hindu loyalty modifier"": ""Brahmins_loyalty_modifier.png"",
+	""Brahmins hindu influence modifier"": ""Brahmins_influence_modifier.png"",
+	""Brahmins muslim influence modifier"": ""Brahmins_influence_modifier.png"",
+	""Brahmins muslim loyalty modifier"": ""Brahmins_loyalty_modifier.png"",
 }}";
 
 				var obj = JObject.Parse(str);

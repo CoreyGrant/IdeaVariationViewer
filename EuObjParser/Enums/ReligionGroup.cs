@@ -80,5 +80,27 @@ namespace EuObjParser.Enums
 		[EuKeyAttribute("centaur_religion")]
 		[Display(Name = "Centaur Religion")]
 		centaur_religion,
+
+		[EuKeyAttribute("christian")]
+		[Display(Name = "Christian")]
+		christian,
+		[EuKeyAttribute("muslim")]
+		[Display(Name = "Muslim")]
+		muslim,
+		[EuKeyAttribute("eastern")]
+		[Display(Name = "Eastern")]
+		eastern,
+		[EuKeyAttribute("dharmic")]
+		[Display(Name = "Dharmic")]
+		dharmic,
+		[EuKeyAttribute("pagan")]
+		[Display(Name = "Pagan")]
+		pagan,
+		[EuKeyAttribute("jewish_group")]
+		[Display(Name = "Jewish")]
+		jewish_group,
+		[EuKeyAttribute("zoroastrian_group")]
+		[Display(Name = "Zoroastrian")]
+		zoroastrian_group
 	}
 }

@@ -5,7 +5,7 @@
 		"strict": true,
 		"module": "ESNext",
 		"moduleResolution": "node",
-		"target": "ES2017",
+		"target": "ES2019",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,

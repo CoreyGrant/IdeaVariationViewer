@@ -4,25 +4,34 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="Web\App\Anbennar\anbennarNations.vue">
-      <SubType>Code</SubType>
-    </None>
     <None Update="Web\App\app-router.ts">
       <SubType>Code</SubType>
     </None>
     <None Update="Web\App\appData.ts">
       <SubType>Code</SubType>
     </None>
+    <None Update="Web\App\Components\appIcon.vue">
+      <SubType>Code</SubType>
+    </None>
     <None Update="Web\App\Components\ideaGroup.vue">
       <SubType>Code</SubType>
     </None>
-    <None Update="Web\App\IdeaVariation\ideaVariationIdeaGroups.vue">
+    <None Update="Web\App\about.vue">
       <SubType>Code</SubType>
     </None>
-    <None Update="Web\App\IdeaVariation\ideaVariationPlanner.vue">
+    <None Update="Web\App\Components\policyLimit.vue">
       <SubType>Code</SubType>
     </None>
-    <None Update="Web\App\IdeaVariation\ideaVariationPolicies.vue">
+    <None Update="Web\App\Helpers\bonusCache.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\Helpers\getBonusUrl.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\Helpers\helpers.ts">
+      <SubType>Code</SubType>
+    </None>
+    <None Update="Web\App\Helpers\state.ts">
       <SubType>Code</SubType>
     </None>
     <None Update="Web\App\pngshim.d.ts">

@@ -390,7 +390,7 @@ namespace EuObjParser.Enums
   
         [EuKeyAttribute("global_heretic_missionary_strength")]
         [Display(Name = "Missionary strength vs heretics")]
-        [EuValueType(BonusDisplayType.OneDp)]
+        [EuValueType(BonusDisplayType.TwoDp)]
         global_heretic_missionary_strength,
   
         [EuKeyAttribute("global_institution_spread")]
@@ -429,7 +429,7 @@ namespace EuObjParser.Enums
         global_regiment_cost,
   
         [EuKeyAttribute("global_regiment_recruit_speed")]
-        [Display(Name = "Regimentment time")]
+        [Display(Name = "Recruitment time")]
         [EuValueType(BonusDisplayType.Percentage)]
         global_regiment_recruit_speed,
   
@@ -440,7 +440,7 @@ namespace EuObjParser.Enums
   
         [EuKeyAttribute("global_sailors")]
         [Display(Name = "National sailors")]
-        [EuValueType(BonusDisplayType.Thousand)]
+        [EuValueType(BonusDisplayType.OneDp)]
         global_sailors,
   
         [EuKeyAttribute("global_sailors_modifier")]
@@ -1069,7 +1069,7 @@ namespace EuObjParser.Enums
         war_exhaustion,
   
         [EuKeyAttribute("war_exhaustion_cost")]
-        [Display(Name = "Cost of reducing war exhuastion")]
+        [Display(Name = "Cost of reducing war exhaustion")]
         [EuValueType(BonusDisplayType.Percentage)]
         war_exhaustion_cost,
   
@@ -1144,7 +1144,7 @@ namespace EuObjParser.Enums
         monthly_piety,
   
         [EuKeyAttribute("monthly_karma")]
-        [Display(Name = "Montly karma")]
+        [Display(Name = "Monthly karma")]
         [EuValueType(BonusDisplayType.TwoDp)]
         monthly_karma,
   
@@ -1208,7 +1208,7 @@ namespace EuObjParser.Enums
         [EuValueType(BonusDisplayType.Percentage)]
         add_age_fire_damage_received,
         [EuKeyAttribute("vassal_forcelimit_bonus")]
-        [Display(Name = "Vassal force limit bonus")]
+        [Display(Name = "Vassal force limit contribution")]
         [EuValueType(BonusDisplayType.Percentage)]
         vassal_forcelimit_bonus,
         [EuKeyAttribute("idea_claim_colonies")]
@@ -1228,7 +1228,7 @@ namespace EuObjParser.Enums
         [EuValueType(BonusDisplayType.YesNo)]
         own_coast_naval_combat_bonus,
         [EuKeyAttribute("placed_merchant_power")]
-        [Display(Name = "Merchat trade power")]
+        [Display(Name = "Merchant trade power")]
         [EuValueType(BonusDisplayType.ZeroDp)]
         placed_merchant_power,
         [EuKeyAttribute("envoy_travel_time")]
@@ -1405,7 +1405,7 @@ namespace EuObjParser.Enums
         cavalry_fire,
         [EuKeyAttribute("church_loyalty_modifier")]
         [Display(Name = "Church loyalty modifier")]
-        [EuValueType(BonusDisplayType.TwoDp)]
+        [EuValueType(BonusDisplayType.Percentage)]
         church_loyalty_modifier,
         [EuKeyAttribute("possible_adm_policy")]
         [Display(Name = "Possible admin policy")]
@@ -1456,8 +1456,8 @@ namespace EuObjParser.Enums
         [EuValueType(BonusDisplayType.Percentage)]
         artificers_influence_modifier,
         [EuKeyAttribute("trade_goods_size")]
-        [Display(Name = "Trade goods size")]
-        [EuValueType(BonusDisplayType.Percentage)]
+        [Display(Name = "Local goods produced")]
+        [EuValueType(BonusDisplayType.TwoDp)]
         trade_goods_size,
         [EuKeyAttribute("local_defensiveness")]
         [Display(Name = "Local defensiveness")]
@@ -1487,5 +1487,97 @@ namespace EuObjParser.Enums
         [Display(Name = "Local hostile attrition")]
         [EuValueType(BonusDisplayType.Percentage)]
         local_hostile_attrition,
+        [EuKeyAttribute("flagship_cost")]
+        [Display(Name = "Flagship cost")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        flagship_cost,
+        [EuKeyAttribute("disengagement_chance")]
+        [Display(Name = "Disengagement chance")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        disengagement_chance,
+        [EuKeyAttribute("justify_trade_conflict_cost")]
+        [Display(Name = "Justify trade conflict cost")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        justify_trade_conflict_cost,
+        [EuKeyAttribute("sunk_ship_morale_hit_recieved")]
+        [Display(Name = "Sunk ship morale hit recieved")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        sunk_ship_morale_hit_recieved,
+        [EuKeyAttribute("amount_of_banners")]
+        [Display(Name = "Amount of banners")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        amount_of_banners,
+        [EuKeyAttribute("min_autonomy_in_territories")]
+        [Display(Name = "Minimum autonomy in territories")]
+        [EuValueType(BonusDisplayType.ZeroDp)]
+        min_autonomy_in_territories,
+        [EuKeyAttribute("migration_cooldown")]
+        [Display(Name = "Migration cooldown")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        migration_cooldown,
+        [EuKeyAttribute("burghers_influence_modifier")]
+        [Display(Name = "Burghers influence modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        burghers_influence_modifier,
+        [EuKeyAttribute("yearly_tribal_allegiance")]
+        [Display(Name = "Yearly tribal allegiance")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        yearly_tribal_allegiance,
+        [EuKeyAttribute("trade_company_investment_cost")]
+        [Display(Name = "Trade company investment cost")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        trade_company_investment_cost,
+        [EuKeyAttribute("pr_captains_influence")]
+        [Display(Name = "PR Captains influence")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        pr_captains_influence,
+        [EuKeyAttribute("naval_tradition_from_battle")]
+        [Display(Name = "Naval tradition from battles")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        naval_tradition_from_battle,
+        [EuKeyAttribute("brahmins_hindu_influence_modifier")]
+        [Display(Name = "Brahmins hindu influence modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        brahmins_hindu_influence_modifier,
+        [EuKeyAttribute("brahmins_muslim_loyalty_modifier")]
+        [Display(Name = "Brahmins muslim loyalty modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        brahmins_muslim_loyalty_modifier,
+        [EuKeyAttribute("brahmins_muslim_influence_modifier")]
+        [Display(Name = "Brahmins muslim influence modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        brahmins_muslim_influence_modifier,
+        [EuKeyAttribute("brahmins_hindu_loyalty_modifier")]
+        [Display(Name = "Brahmins hindu loyalty modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        brahmins_hindu_loyalty_modifier,
+        [EuKeyAttribute("vaisyas_loyalty_modifier")]
+        [Display(Name = "Vaishyas loyalty modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        vaisyas_loyalty_modifier,
+        [EuKeyAttribute("dhimmi_loyalty_modifier")]
+        [Display(Name = "Dhimmi loyalty modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        dhimmi_loyalty_modifier,
+        [EuKeyAttribute("dhimmi_influence_modifier")]
+        [Display(Name = "Dhimmi influence modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        dhimmi_influence_modifier,
+        [EuKeyAttribute("cossacks_loyalty_modifier")]
+        [Display(Name = "Cossacks loyalty modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        cossacks_loyalty_modifier,
+        [EuKeyAttribute("cossacks_influence_modifier")]
+        [Display(Name = "Cossacks influence modifier")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        cossacks_influence_modifier,
+        [EuKeyAttribute("curia_powers_cost")]
+        [Display(Name = "Curia powers cost")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        curia_powers_cost,
+        [EuKeyAttribute("accept_vassalization_reasons")]
+        [Display(Name = "Accept vassalization reasons")]
+        [EuValueType(BonusDisplayType.Percentage)]
+        accept_vassalization_reasons
     }
 }
