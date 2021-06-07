@@ -1,8 +1,7 @@
 ﻿<template>
 	<div class="app-container">
 		<div class="index-page">
-			<h1>EU4 Mod Viewer</h1>
-			<div class="row">
+			<div class="row mt-3">
 				<div class="col-md-12">
 					<p>The app is still in development, so features may be in flux and there will be bugs. If you want to report a bug, request a feature or mod, or just ask a question, the Discord is <a href="https://discord.gg/HMKN7tY7zV" target="_blank">here</a></p>
 				</div>
@@ -13,7 +12,7 @@
 						<div class="filters mod-filters">
 							<div class="name-input d-flex">
 								<label for="name-search" class=" mr-3">Name</label>
-								<input id="name-search" type="text" class="form-control" v-model="search.name" />
+								<input id="name-search" type="text" class="form-control eu4-input" v-model="search.name" />
 							</div>
 							<p class="ml-4">{{filteredMods.length}} mods</p>
 						</div>
@@ -21,10 +20,10 @@
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<table class="table">
+						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th style="color: #d4d4d4">Mod (steam link)</th>
+									<th style="color: #d4d4d4">Mod</th>
 									<th style="color: #d4d4d4"><p class="ml-4">Sections</p></th>
 								</tr>
 							</thead>

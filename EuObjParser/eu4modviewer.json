@@ -22,12 +22,17 @@
 			"id": 604203692,
 			"name": "Idea Variation",
 			"fileMappings": {
-				"sections": {"ideas": true, "policies": true, "countries": true, "religions": true},
+				"sections": {
+					"ideas": true,
+					"policies": true,
+					"countries": true,
+					"religions": true
+				},
 				"countries": { "all": true },
 				"countryTags": { "base": true },
 				"cultures": { "base": true },
 				"religions": { "base": true },
-				"ideas": { "collapse":  true },
+				"ideas": { "collapse": true },
 				"policies": { "all": true },
 				"history": {
 					"countries": { "base": true },
@@ -47,7 +52,7 @@
 				"countryTags": { "all": true },
 				"religions": {
 					"all": true,
-					"except": ["01_converted_religions", "01_converted_heresies"]
+					"except": [ "01_converted_religions", "01_converted_heresies" ]
 				},
 				"ideas": { "all": true },
 				"cultures": { "all": true },
@@ -59,7 +64,12 @@
 			"id": 2430977693,
 			"name": "Gecko",
 			"fileMappings": {
-				"sections": {"countries": true, "policies":  true, "ideas": true, "religions":  true},
+				"sections": {
+					"countries": true,
+					"policies": true,
+					"ideas": true,
+					"religions": true
+				},
 				"countries": { "collapse": true },
 				"countryTags": { "all": true },
 				"cultures": { "all": true },
@@ -74,7 +84,12 @@
 			"id": 2421453433,
 			"name": "habibi-zlewikk-mjl-PR",
 			"fileMappings": {
-				"sections": {"countries": true, "policies":  true, "ideas": true, "religions":  true},
+				"sections": {
+					"countries": true,
+					"policies": true,
+					"ideas": true,
+					"religions": true
+				},
 				"countries": { "collapse": true },
 				"countryTags": { "all": true },
 				"cultures": { "all": true },
@@ -104,7 +119,6 @@
 				"religions": { "all": true },
 				"ideas": { "all": true },
 				"policies": { "all": true },
-				"churchAspects": { "all": true },
 				"history": { "countries": { "all": true } }
 			}
 		},
@@ -125,7 +139,26 @@
 				"countryTags": { "all": true },
 				"ideas": { "all": true },
 				"cultures": { "all": true }
+			},
+		},
+		{
+			"id": 2241175313,
+			"name": "Purple Mod v3.3",
+			"fileMappings": {
+				"sections": {
+					"countries": true,
+					"policies": true,
+					"ideas": true,
+					"religions": true
+				},
+				"countries": { "collapse": true },
+				"countryTags": { "collapse": true },
+				"cultures": { "all": true },
+				"religions": { "all": true },
+				"ideas": { "all": true },
+				"policies": { "all": true },
+				"history": { "countries": { "all": true } }
 			}
-		} 
+		}
 	],
 }

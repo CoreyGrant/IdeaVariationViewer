@@ -35,11 +35,8 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                loader: 'css-loader',
-                exclude: /node_modules/,
-                options: {
-                    name: '[name].[ext]?[hash]'
-                }
+                use: ['style-loader','css-loader'],
+                exclude: /node_modules/
             },
             {
                 test: /\.ts$/,

@@ -1,8 +1,11 @@
 ﻿<template>
-	<div class="country" v-bind:style="getCountryStyle(country)">
+	<div class="country">
 		<div class="country-bonuses">
-			<div class="d-flex flex-row justify-content-between">
-				<h4 style="margin-left: 4px; margin-top: 4px; font-size: 1.6rem">{{country.name}}</h4>
+			<div class="d-flex flex-row justify-content-between country-bonuses-title">
+				<div class="flag-image" v-if="countryColor" v-bind:style="{'background-color': countryColor}"></div>
+				<div style="width: 100%" class="d-flex justify-content-center">
+					<h4 style="margin-top: 4px; font-size: 1.6rem;">{{country.name}}</h4>
+				</div>
 				<app-icon v-if="country.tag" class="flag-image" :url="'/Data/' + modId + '/flags/' + country.tag + '.png'"></app-icon>
 			</div>
 			<div class="country-idea-group-bonus d-flex flex-row" v-for="(idea, index) in orderedIdeas">
@@ -35,21 +38,22 @@
 			modId: Number
 		},
 		methods:{
-			getCountryStyle(country) {
-				if (!country.colors || !country.colors.length) {
-					return null;
-				}
-				var style = {
-					"border": "3px solid " + country.colors[0].rgb,
-				};
-				return style;
-			},
+
 		},
 		data() {
 			return {
 			};
 		},
-		computed:{
+		computed: {
+			countryColor: function (): string {
+				var country = this.country;
+				if (!country.colors || !country.colors.length) {
+					return "";
+				}
+				var color = country.colors[0];
+
+				return`rgb(${color.red},${color.green},${color.blue})`
+			},
 			orderedIdeas: function():any[]{
 				var ideas = [...this.country.ideas];
 				var final = ideas.find(x => x.name.toLowerCase() == "bonus");

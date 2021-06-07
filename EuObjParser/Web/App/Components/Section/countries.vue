@@ -1,25 +1,24 @@
 ﻿<template>
 	<div class="countries-page">
-		<div class="filters idea-group-filters">
+		<div class="filters">
 			<div class="bonus-input">
 				<label for="idea-bonus-search">Bonus</label>
-				<select v-model="search.bonus" class="form-control" id="idea-bonus-search">
+				<select v-model="search.bonus" class="form-control eu4-input" id="idea-bonus-search">
 					<option :value='null'>None</option>
 					<option v-for="bonusKey in bonuses" :value="bonusKey">{{bonusKey | bonusName}}</option>
 				</select>
 			</div>
 			<div class="category-input">
 				<label for="country-bonus-search">Name</label>
-				<input id="country-bonus-search" type="text" class="form-control" v-model="search.name" />
+				<input id="country-bonus-search" type="text" class="form-control eu4-input" v-model="search.name" />
 			</div>
 			<p class="ml-4">{{filteredCountries.length}} countries</p>
 		</div>
 		<div class="countries">
 			<expanding-scroll-list @load-more="listLength += 20">
-				<div class="row" style="margin-left: -4px; margin-right: -4px; width: 100%;">
-					<div style="padding-right: 4px; padding-left: 4px;" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="country in pagedCounties"><country :modId="id" :key="country.name" :country="country" :active-bonus="search.bonus"></country>
-					</div>
-				</div>		
+				<div class="countries-list">
+					<country v-for="country in pagedCounties" :modId="id" :key="country.name" :country="country" :active-bonus="search.bonus"></country>
+				</div>
 			</expanding-scroll-list>
 		</div>
 	</div>
@@ -54,14 +53,14 @@
 		created(): void {
 			getFile(this.id + "/countries.json").then(x => this.countries = x.countries);
 			getFile(this.id + "/bonuses.json").then(x => this.bonuses = x.bonuses.sort((x, y) => getBonusName(x) > getBonusName(y)));
-			if(this.$route.query.name){
+			if (this.$route.query.name) {
 				this.search.name = this.$route.query.name;
 			}
 		},
 		methods: {
 		},
 		computed: {
-			filteredCountries: function () : any[]{
+			filteredCountries: function (): any[] {
 				var searchName = this.search.name;
 				var searchBonus = this.search.bonus;
 				var countries = <any[]>this.countries;

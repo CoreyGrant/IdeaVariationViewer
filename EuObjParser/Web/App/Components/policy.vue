@@ -1,17 +1,20 @@
 ﻿<template>
 	<div class="policy">
-		<div class="d-flex flex-row justify-content-between">
-			<h4 class="link">
-				{{name}}  
-			<span v-if="hasAnyOf"> + </span>
-				<policy-one-of v-if="hasAnyOf" :potential="policy.potential" :idea-groups="ideaGroups"></policy-one-of>
-			<policy-limit v-if="isAmountLimited" :allow="policy.allow" :policy-name-display-name-map="policyNameDisplayNameMap"></policy-limit></h4>
-			<app-icon :name="policy.monarchPower" class="policy-monarch-power"/>
+		<div class="d-flex flex-row justify-content-between country-bonuses-title" style="border-bottom: 2px double rgb(165, 121, 66);">
+			<div style="width: 100%" class="d-flex justify-content-center">
+				<h4 style="margin-top: 4px; font-size: 1.3rem;">
+					{{name}}
+					<span v-if="hasAnyOf"> + </span>
+					<policy-one-of v-if="hasAnyOf" :potential="policy.potential" :idea-groups="ideaGroups"></policy-one-of>
+					<policy-limit v-if="isAmountLimited" :allow="policy.allow" :policy-name-display-name-map="policyNameDisplayNameMap"></policy-limit>
+				</h4>
+			</div>
+			<app-icon :name="policy.monarchPower" class="policy-monarch-power" />
 		</div>
 		<div class="row">
 			<div class="col">
 				<div class="d-flex flex-column">
-					<bonus v-for="(value, name) in policy.bonuses" :name="name" :value="value" :activeBonus="activeBonus == name" :key="name"/>
+					<bonus v-for="(value, name) in policy.bonuses" :name="name" :value="value" :activeBonus="activeBonus == name" :key="name" />
 				</div>
 			</div>
 		</div>

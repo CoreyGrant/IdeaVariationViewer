@@ -1,10 +1,10 @@
 ﻿<template>
     <div class="idea-group">
-		<div class="idea-group-top">
-			<div class="d-flex flex-row justify-content-between">
-				<h4 style="margin-left: 4px;  margin-top: 4px; font-size: 1.6rem">{{name}}</h4>
-				<app-icon class="bonus-image" :name="ideaGroup.category" />
+		<div class="d-flex flex-row justify-content-between country-bonuses-title">
+			<div style="width: calc(100% - 40px);" class="d-flex justify-content-center">
+				<h4 style="margin-top: 4px; font-size: 1.6rem;">{{name}}</h4>
 			</div>
+			<app-icon class="bonus-image" :name="ideaGroup.category" />
 		</div>
 		<div class="idea-group-bonuses">
 			<div class="idea-group-bonus d-flex flex-row" v-for="(idea, index) in orderedIdeas">

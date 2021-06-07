@@ -30,6 +30,8 @@ namespace EuObjParser.AAParser
 		{
 			var commonPath = Path.Combine(baseFolder, "common");
 			var historyPath = Path.Combine(baseFolder, "history");
+			var eventsPath = Path.Combine(baseFolder, "events");
+
 			var localizationPath = Path.Combine(baseFolder, "localisation");
 			//var commonFiles = Directory.GetFiles(commonPath, SearchPattern);
 			//var historyFiles = Directory.GetFiles(historyPath, SearchPattern);
@@ -51,6 +53,15 @@ namespace EuObjParser.AAParser
 				foreach (var dir in historyDirectories)
 				{
 					ConvertFilesInFolder(baseFolder, Path.Combine("history", dir.Split("\\").Last()), modId);
+				}
+			}
+			if (Directory.Exists(eventsPath))
+			{
+				var eventDirectory = Directory.GetDirectories(eventsPath);
+				ConvertFilesInFolder(baseFolder, "events", modId);
+				foreach (var dir in eventDirectory)
+				{
+					ConvertFilesInFolder(baseFolder, Path.Combine("events", dir.Split("\\").Last()), modId);
 				}
 			}
 		}

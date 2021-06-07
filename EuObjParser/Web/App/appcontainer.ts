@@ -3,6 +3,7 @@ import AppHeader from './Components/appHeader.vue';
 import appRouter from './app-router';
 import { getBonusName, displayBonusValue } from './Helpers/getBonusUrl';
 import '../Styles/eu4modviewer.scss';
+import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 
 Vue.filter('bonusName', function(value){
     return getBonusName(value);

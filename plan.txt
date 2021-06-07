@@ -1,0 +1,22 @@
+GETTING ALL MODS FULLY LOADED
+
+Some mods are total conversion, replace everything and don't use the base game free_colonies
+Some mods are just additions, adding new data but also using SOME base game data
+
+Each mod needs a modconfig which determines where it's data files are located, which data is relevant, and how the inheritance works
+
+FULL STYLING OVERHAUL
+Desktop styling needs to be improved, and mobile styling needs to be done.
+
+DATA LOADING REDESIGN
+Data needs to be loaded on a per use basis, to better handle larger datasets as the folders parsed expands
+Each mod should have its own data folder, and each type of data should be stored in different files (countries, policies, ideagroups, religiongroups, etc)
+Each page should load the data when the page is navigated to
+
+INFRASTRUCTURE
+Need to use sass rather than css
+Data rework mentioned above
+Versioning for source files to bust cache
+
+PARSER IMPROVEMENTS
+Idea groups are ordered, we should capture that and use it.

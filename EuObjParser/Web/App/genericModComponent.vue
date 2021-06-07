@@ -5,10 +5,10 @@
 				<router-link to="/Index">Home</router-link>
 			</div>
 			<ul>
-				<li v-for="section in sections"><router-link :to="'/Mod/' + id + '/' + section.name">{{section.displayName}}</router-link></li>
+				<li v-for="section in sections"><router-link :to="'/Mod/' + id + '/' + section.name">{{section.displayName}}<img :src="sectionUrl(section)" style="width: 36px; height: 36px;"/></router-link></li>
 			</ul>
 			<div class="nav-end">
-				<a v-if="id" :href="'https://steamcommunity.com/sharedfiles/filedetails/?id=' + id" target="_blank">Steam Workshop</a>
+				<a v-if="id" :href="'https://steamcommunity.com/sharedfiles/filedetails/?id=' + id" target="_blank">Steam</a>
 			</div>
 		</nav>
 		<div class="page">
@@ -28,6 +28,21 @@
 			name: String,
 			id: Number,
 			sections: Array
+		},
+		methods: {
+			sectionUrl(section): string {
+				switch (section.name) {
+					case 'countries':
+						return '/Icons/countries.png';
+					case 'ideaGroups':
+						return '/Icons/ideas.png';
+					case 'policies':
+						return '/Icons/policies.png';
+					case 'religionGroups':
+						return '/Icons/religions.png';
+				}
+				return "";
+			}
 		}
 	});
 </script>

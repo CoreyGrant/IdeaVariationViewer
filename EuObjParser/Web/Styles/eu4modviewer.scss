@@ -1,8 +1,9 @@
 ﻿
-html > * {
+body {
 	color: #d4d4d4 !important;
-	background-color: #1e1e1e !important;
-	font-family: 'Roboto', sans-serif;
+	background-color: rgb(29,37,42) !important;
+
+	font-family: 'Roboto', sans-serif, Arial;
 }
 
 p, ul, h1, h2, h3, h4, h5, h6 {
@@ -36,12 +37,24 @@ h4 {
 
 .policy {
 	display: block;
-	width: calc(25% - 20px);
+	width: 400px;
 	margin: 10px;
-	padding: 7px;
-	border: 1px solid rgba(80, 80, 80, 0.74);
+	border: 2px double rgb(165, 121, 66);
 	border-radius: 5px;
 	font-size: 0.8rem;
+}
+
+.table-bordered thead th {
+	// border bottom double width
+	border-bottom: 4px double rgb(165, 121, 66);
+}
+
+.table-bordered td, .table-bordered th {
+	border: 2px double rgb(165, 121, 66);
+}
+
+.table-bordered {
+	border: 2px double rgb(165, 121, 66);
 }
 
 .full-policy {
@@ -73,16 +86,98 @@ ul {
 .scroll-container {
 	width: 100%;
 	height: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
-}
+	overflow-x: hidden;
 
-.policy-monarch-power {
-	height: 28px;
-	width: 28px;
+	.scroll-slot-container {
+		height: 100%;
+		overflow-x: hidden;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		padding-right: 20px;
+	}
+
+	.eu4-scrollbar {
+		width: 16px;
+		height: 100%;
+		position: relative;
+
+		.eu4-scrollbar-track {
+			position: absolute;
+			top: 10px;
+			left: 2px;
+			width: 12px;
+			height: calc(100% - 20px);
+			z-index: 10;
+
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		.eu4-scrollbar-slider {
+			img {
+				height: 100%;
+				width: 100%;
+			}
+
+			z-index: 20;
+			height: 16px;
+			width: 16px;
+			position: absolute;
+			cursor: pointer;
+		}
+
+		.eu4-scrollbar-top {
+			img {
+				height: 100%;
+				width: 100%;
+			}
+
+			z-index: 20;
+			height: 16px;
+			width: 16px;
+			position: absolute;
+			top: 0;
+			cursor: pointer;
+		}
+
+		.eu4-scrollbar-bottom {
+			img {
+				height: 100%;
+				width: 100%;
+			}
+
+			z-index: 20;
+			height: 16px;
+			width: 16px;
+			position: absolute;
+			bottom: 0;
+			cursor: pointer;
+		}
+	}
+}
+.eu4-input {
+	border: 2px solid rgb(165, 121, 66);
+	border-radius: 3px;
+	background-color: rgb(29,37,42);
+	color: #d4d4d4;
+
+	option {
+		background-color: rgb(29,37,42);
+		color: #d4d4d4;
+	}
+
+	&:focus {
+		border-radius: 3px;
+		border: 2px double rgb(165, 121, 66);
+		background-color: rgb(29,37,42);
+		color: #d4d4d4;
+		box-shadow: none;
+	}
 }
 
 .idea-groups, .countries, .policies {
@@ -93,38 +188,48 @@ ul {
 	font-size: 0.8rem;
 }
 
-.policies .scroll-container {
-}
-
 .flag-image {
 	height: 32px;
 	width: 32px;
-	border: 1px solid rgba(80, 80, 80, 0.74);
+	border: 2px double rgb(165, 121, 66);
+	margin-bottom: 4px;
+	margin-top: 4px;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.policy-monarch-power {
+	height: 24px;
+	width: 24px;
 	margin-bottom: 4px;
 	margin-top: 4px;
 	margin-right: 4px;
 }
 
+.idea-group, .country {
+	display: block;
+	width: 300px;
+	min-width: 300px;
+	margin-top: 15px;
+	border: 3px double rgb(165, 121, 66);
+	border-radius: 5px;
+	height: min-content;
+}
 .religion-groups {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	overflow-y: auto;
-	overflow-x: hidden;
-	height: 100%;
+	width: 100%;
 	font-size: 0.8rem;
 }
-
-.idea-group, .country {
-	display: block;
+.countries-list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: start;
 	width: 100%;
-	height: 100%;
-	margin-top: 15px;
-	border: 1px solid rgba(80, 80, 80, 0.74);
-	border-radius: 5px;
-	height: min-content;
 }
-
 .religion-group {
 	display: block;
 	width: calc(100% - 30px);
@@ -132,7 +237,7 @@ ul {
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 15px;
-	border: 1px solid rgba(80, 80, 80, 0.74);
+	border: 2px double rgb(165, 121, 66);
 	border-radius: 5px;
 }
 
@@ -140,34 +245,47 @@ ul {
 	padding: 10px;
 	padding-left: 0;
 }
-.religions{
-	>.row{
+
+.simplebar-content{
+
+}
+.simplebar-scroll-content{
+
+}
+
+
+.religions {
+	> .row {
 		margin-left: -4px;
 		margin-right: -4px;
-		>.col{
+
+		> .col {
 			padding-left: 4px;
 			padding-right: 4px;
 		}
 	}
+
 	.religion {
 		margin-bottom: 8px;
 		padding: 4px;
-		border: 1px solid rgba(80, 80, 80, 0.74);
+		border: 3px double rgb(165, 121, 66);
 		border-radius: 5px;
 
-		>div {
+		> div {
 			display: flex;
 			width: 100%;
 
 			&:nth-child(n-1) {
-				border-top: 1px solid rgba(80, 80, 80, 0.74);
+				border-top: 2px double rgb(165, 121, 66);
 			}
-			>p{
+
+			> p {
 				margin: 4px;
 			}
-			>div {
+
+			> div {
 				width: 100%;
-				border-left: 1px solid rgba(80, 80, 80, 0.74);
+				border-left: 2px double rgb(165, 121, 66);
 				display: flex;
 				flex-direction: column;
 				align-items: start;
@@ -175,13 +293,6 @@ ul {
 		}
 	}
 }
-.idea-group-top {
-	padding: 10px;
-}
-
-.idea-group-top h4 {
-}
-
 .sideways {
 	font-size: 12px;
 	writing-mode: vertical-lr;
@@ -197,7 +308,11 @@ ul {
 	overflow-x: hidden;
 }
 
-.bonus{
+.country-bonuses-title{
+	background-color: rgb(69, 77, 52);
+}
+
+.bonus {
 	display: flex;
 	align-items: center;
 	flex-direction: row;
@@ -213,13 +328,13 @@ ul {
 	display: block;
 	padding-left: 4px;
 	padding-right: 4px;
-	border-top: 1px solid rgba(80, 80, 80, 0.74);
+	border-top: 3px double rgb(165, 121, 66);
 }
 
 .country-idea-group-bonus {
 	padding-left: 4px;
 	padding-right: 4px;
-	border-top: 1px solid rgba(80, 80, 80, 0.74);
+	border-top: 3px double rgb(165, 121, 66);
 }
 
 .country-name h4 {
@@ -283,24 +398,24 @@ ul {
 
 
 
-	.great-project-row {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: start;
+.great-project-row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
 
-		> div {
-			width: calc(33.33% - 27px);
-		}
-
-		> div:first-child {
-			width: 81px;
-			display: flex;
-			align-items: start;
-			justify-content: center;
-			border-right: 1px solid rgba(80, 80, 80, 0.74);
-		}
+	> div {
+		width: calc(33.33% - 27px);
 	}
+
+	> div:first-child {
+		width: 81px;
+		display: flex;
+		align-items: start;
+		justify-content: center;
+		border-right: 2px double rgb(165, 121, 66);
+	}
+}
 
 
 
@@ -357,9 +472,13 @@ ul {
 	.filters {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		padding-top: 10px;
 		margin-bottom: 10px;
 		height: 40px;
+		&>*{
+			margin-right: 10px;
+		}
 	}
 
 	.monarch-power-input {
@@ -377,9 +496,9 @@ ul {
 		cursor: pointer;
 	}
 
-	.monarch-power-input img.active {
-		border-color: green;
-	}
+.monarch-power-input img.active {
+	border: 2px double rgb(165, 121, 66);
+}
 
 	.router-link-exact-active {
 		text-decoration: none;
@@ -393,11 +512,8 @@ ul {
 	}
 
 	.bonus-input, .category-input {
-		width: 450px;
-		margin-left: 20px;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
 	}
 
 	.bonus-input label {
@@ -620,6 +736,7 @@ ul {
 	.mod-navigation .nav-end {
 		align-self: end;
 		width: 100px;
+		height: 100%;
 	}
 
 	.app-header {
@@ -629,8 +746,7 @@ ul {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: start;
-		background-color: #333333;
+		justify-content: space-between;
 		z-index: 1000;
 	}
 
@@ -748,3 +864,217 @@ ul {
 		height: calc(100% - 120px);
 		width: 100%;
 	}
+
+
+/* Simplebar */
+[data-simplebar] {
+	position: relative;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: flex-start;
+}
+
+.simplebar-wrapper {
+	overflow: hidden;
+	width: inherit;
+	height: inherit;
+	max-width: inherit;
+	max-height: inherit;
+}
+
+.simplebar-mask {
+	direction: inherit;
+	position: absolute;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: auto !important;
+	height: auto !important;
+	z-index: 0;
+}
+
+.simplebar-offset {
+	direction: inherit !important;
+	box-sizing: inherit !important;
+	resize: none !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	padding: 0;
+	margin: 0;
+	-webkit-overflow-scrolling: touch;
+}
+
+.simplebar-content-wrapper {
+	direction: inherit;
+	box-sizing: border-box !important;
+	position: relative;
+	display: block;
+	height: 100%; /* Required for horizontal native scrollbar to not appear if parent is taller than natural height */
+	width: auto;
+	max-width: 100%; /* Not required for horizontal scroll to trigger */
+	max-height: 100%; /* Needed for vertical scroll to trigger */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.simplebar-content-wrapper::-webkit-scrollbar,
+.simplebar-hide-scrollbar::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+.simplebar-content:before,
+.simplebar-content:after {
+	content: ' ';
+	display: table;
+}
+
+.simplebar-placeholder {
+	max-height: 100%;
+	max-width: 100%;
+	width: 100%;
+	pointer-events: none;
+}
+
+.simplebar-height-auto-observer-wrapper {
+	box-sizing: inherit !important;
+	height: 100%;
+	width: 100%;
+	max-width: 1px;
+	position: relative;
+	float: left;
+	max-height: 1px;
+	overflow: hidden;
+	z-index: -1;
+	padding: 0;
+	margin: 0;
+	pointer-events: none;
+	flex-grow: inherit;
+	flex-shrink: 0;
+	flex-basis: 0;
+}
+
+.simplebar-height-auto-observer {
+	box-sizing: inherit;
+	display: block;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 1000%;
+	width: 1000%;
+	min-height: 1px;
+	min-width: 1px;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.simplebar-track {
+	z-index: 1;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+[data-simplebar].simplebar-dragging .simplebar-content {
+	pointer-events: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+[data-simplebar].simplebar-dragging .simplebar-track {
+	pointer-events: all;
+}
+
+.simplebar-scrollbar {
+	position: absolute;
+	left: 0;
+	right: 0;
+	min-height: 10px;
+}
+
+.simplebar-scrollbar:before {
+	position: absolute;
+	content: '';
+	background: black;
+	border-radius: 7px;
+	left: 2px;
+	right: 2px;
+	opacity: 0;
+	transition: opacity 0.2s linear;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+	/* When hovered, remove all transitions from drag handle */
+	opacity: 0.5;
+	transition: opacity 0s linear;
+}
+
+.simplebar-track.simplebar-vertical {
+	top: 0;
+	width: 11px;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+	top: 2px;
+	bottom: 2px;
+}
+
+.simplebar-track.simplebar-horizontal {
+	left: 0;
+	height: 11px;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar:before {
+	height: 100%;
+	left: 2px;
+	right: 2px;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+	right: auto;
+	left: 0;
+	top: 2px;
+	height: 7px;
+	min-height: 0;
+	min-width: 10px;
+	width: auto;
+}
+
+/* Rtl support */
+[data-simplebar-direction='rtl'] .simplebar-track.simplebar-vertical {
+	right: auto;
+	left: 0;
+}
+
+.hs-dummy-scrollbar-size {
+	direction: rtl;
+	position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	height: 500px;
+	width: 500px;
+	overflow-y: hidden;
+	overflow-x: scroll;
+}
+
+.simplebar-hide-scrollbar {
+	position: fixed;
+	left: 0;
+	visibility: hidden;
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}

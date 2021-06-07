@@ -1,34 +1,32 @@
 ﻿<template>
 	<div class="policies-page">
-		<div class="filters policies-filters">
+		<div class="filters">
+			<div class="bonus-input">
+				<label for="idea-bonus-search">Bonus</label>
+				<select v-model="search.bonus" class="form-control eu4-input" id="policy-bonus-search">
+					<option :value='null'>None</option>
+					<option v-for="bonus in bonuses" :value="bonus">{{bonus | bonusName}}</option>
+				</select>
+			</div>
+			<div class="bonus-input">
+				<label for="idea-bonus-search">Idea</label>
+				<select v-model="search.ideaGroup" class="form-control eu4-input" id="policy-bonus-search">
+					<option :value='null'>None</option>
+					<option v-for="ideaGroup in ideaGroups" :value="ideaGroup.name">{{ideaGroupName(ideaGroup)}}</option>
+				</select>
+			</div>
 			<div class="monarch-power-input">
 				<img :src="baseUrl + 'Icons/Administrative_power.png'" :class="{active: search.monarch === 'ADM'}" @click="toggleMonarch('ADM')" />
 				<img :src="baseUrl + 'Icons/Diplomatic_power.png'" :class="{active: search.monarch === 'DIP'}" @click="toggleMonarch('DIP')" />
 				<img :src="baseUrl + 'Icons/Military_power.png'" :class="{active: search.monarch === 'MIL'}" @click="toggleMonarch('MIL')" />
 			</div>
-			<div class="bonus-input form-row">
-				<label for="idea-bonus-search col-2 col-form-label">Bonus</label>
-				<div class="col-10">
-					<select v-model="search.bonus" class="form-control" id="policy-bonus-search">
-						<option :value='null'>None</option>
-						<option v-for="bonus in bonuses" :value="bonus">{{bonus | bonusName}}</option>
-					</select>
-				</div>
-			</div>
-			<div class="bonus-input form-row">
-				<label for="idea-bonus-search col-2 col-form-label">Idea</label>
-				<div class="col-10">
-					<select v-model="search.ideaGroup" class="form-control" id="policy-bonus-search">
-						<option :value='null'>None</option>
-						<option v-for="ideaGroup in ideaGroups" :value="ideaGroup.name">{{ideaGroupName(ideaGroup)}}</option>
-					</select>
-				</div>
-			</div>
 			<p class="ml-4">{{filteredPolicies.length}} policies</p>
 		</div>
 		<div class="policies">
 			<expanding-scroll-list @load-more="listLength += 40">
-				<policy v-for="policy in pagedPolicies" :policy="policy" :active-bonus="search.bonus" :key="policy.name" :policy-name-display-name-map="nameDisplayNameMap" :idea-groups="ideaGroups"></policy>
+				<div class="countries-list">
+					<policy v-for="policy in pagedPolicies" :policy="policy" :active-bonus="search.bonus" :key="policy.name" :policy-name-display-name-map="nameDisplayNameMap" :idea-groups="ideaGroups"></policy>
+				</div>
 			</expanding-scroll-list>
 		</div>
 	</div>
@@ -47,7 +45,7 @@
 			Policy,
 			ExpandingScrollList
 		},
-		data(): any{
+		data(): any {
 			return {
 				listLength: 40,
 				baseUrl: window.location.origin + '/',
@@ -61,7 +59,7 @@
 				ideaGroups: [],
 			};
 		},
-		props:{
+		props: {
 			id: Number,
 		},
 		created(): void {
@@ -85,7 +83,7 @@
 						nameParts.push(this.ideaGroups.find(x => x.name == condition.value).localizedName || this.tidyName(condition.value));
 					}
 				}
-				return nameParts.join(" + ");
+				return nameParts.map(x => x.replace(" Ideas", "")).join(" + ");
 			},
 			toggleMonarch(val): void {
 				this.search.monarch = this.search.monarch === val
@@ -101,7 +99,7 @@
 		computed: {
 			nameDisplayNameMap(): any {
 				return this.policies.reduce((prev, cur) => {
-					return Object.assign({}, prev, {[cur.name]: this.createName(cur)});
+					return Object.assign({}, prev, { [cur.name]: this.createName(cur) });
 				}, {});
 			},
 			filteredPolicies: function (): any[] {
@@ -122,7 +120,7 @@
 				}
 				return policies || [];
 			},
-			pagedPolicies: function(): any[]{
+			pagedPolicies: function (): any[] {
 				return this.filteredPolicies.slice(0, this.listLength);
 			}
 		},
